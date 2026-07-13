@@ -5,6 +5,7 @@ arreglos = {
     'FLO1': ['Ramo Primavera', 'ramo', 'rosado', 'M', True, 'primavera'],
     'FLO2': ['Caja Elegante', 'caja', 'blanco', 'L', True, 'todo año'],
     'FLO3': ['Ramo Solar', 'ramo', 'amarillo', 'S', False, 'verano']
+    'FLO4': ['centro mesa ', 'ramo', 'amarillo', 'S', False, 'verano']
 }
 
 bodega = {
