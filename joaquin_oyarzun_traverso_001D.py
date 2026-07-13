@@ -1,22 +1,25 @@
-# ET_Joaquin_oyarzun_Traverso_001D
-
 # Diccionarios iniciales
 arreglos = {
     'FLO1': ['Ramo Primavera', 'ramo', 'rosado', 'M', True, 'primavera'],
     'FLO2': ['Caja Elegante', 'caja', 'blanco', 'L', True, 'todo año'],
-    'FLO3': ['Ramo Solar', 'ramo', 'amarillo', 'S', False, 'verano']
-    'FLO4': ['centro mesa ', 'ramo', 'amarillo', 'S', False, 'verano']
+    'FLO3': ['Ramo Solar', 'ramo', 'amarillo', 'S', False, 'verano'],
+    'FLO4': ['Centro Mesa', 'centro', 'rojo', 'M', True, 'otoño'],
+    'FLO5': ['Ramo Bosque', 'ramo', 'verde', 'L', False, 'otoño'],
+    'FLO6': ['Caja Noche', 'caja', 'morado', 'M', True, 'invierno']
 }
 
 bodega = {
     'FLO1': [12000, 5],
     'FLO2': [18000, 3],
-    'FLO3': [9000, 0]
+    'FLO3': [9000, 0],
+    'FLO4': [15000, 4],
+    'FLO5': [20000, 2],
+    'FLO6': [17000, 6]
 }
 
 # Validaciones
 def validar_codigo(codigo):
-    return codigo.strip() != "" and codigo.upper() not in arreglos and codigo.upper() not in bodega
+    return codigo.strip() != "" and codigo.upper() not in arreglos
 
 def validar_nombre(nombre):
     return nombre.strip() != ""
@@ -37,10 +40,10 @@ def validar_temporada(temp):
     return temp.strip() != ""
 
 def validar_precio(precio):
-    return precio > 0
+    return isinstance(precio, int) and precio > 0
 
 def validar_unidades(unidades):
-    return unidades >= 0
+    return isinstance(unidades, int) and unidades >= 0
 
 # Funciones principales
 def leer_opcion():
@@ -86,6 +89,11 @@ def actualizar_precio(codigo, nuevo_precio):
 def agregar_arreglo(codigo, nombre, tipo, color, tamaño, tarjeta, temporada, precio, unidades):
     if not validar_codigo(codigo):
         print("El código ya existe o es inválido")
+        return False
+    if not (validar_nombre(nombre) and validar_tipo(tipo) and validar_color(color) and 
+            validar_tamaño(tamaño) and validar_tarjeta(tarjeta) and validar_temporada(temporada) and 
+            validar_precio(precio) and validar_unidades(unidades)):
+        print("Alguno de los datos ingresados no es válido")
         return False
     arreglos[codigo.upper()] = [nombre, tipo, color, tamaño, tarjeta == 's', temporada]
     bodega[codigo.upper()] = [precio, unidades]
@@ -155,4 +163,3 @@ while True:
     elif opcion == 6:
         print("Programa finalizado")
         break
-        
